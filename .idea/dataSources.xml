@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" hash="542354377">
+    <data-source source="LOCAL" name="Sqlite (Xerial) - units.db" uuid="64bf5e9e-ba47-4497-a5a6-a24992d0f438">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/dimpy/units.db</jdbc-url>
+    </data-source>
+  </component>
+</project>
