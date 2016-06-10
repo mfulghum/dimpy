@@ -38,4 +38,3 @@ def check_dimensionality(unit_string):
 
     dimensionality = np.sum([np.array(cursor.execute(query, unit).fetchone()[1:]) * unit['power'] for unit in units], axis=0)
     return dimensionality[0], dimensionality[1:]
-
