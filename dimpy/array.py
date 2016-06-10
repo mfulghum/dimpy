@@ -23,6 +23,9 @@ class data(np.ndarray):
         self.power = getattr(obj, 'power', 0)
         self.dimensions = getattr(obj, 'dimensions', np.zeros(7, dtype=np.int8))
 
+    def __getitem__(self, item):
+        return self.__class__(super(data, self).__getitem__(item), units=self.units)
+
     def __repr__(self):
         return '%s - units: %s, dimensions: %s' % (self.__str__(), self.units, self.dimensions)
 
