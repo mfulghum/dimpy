@@ -25,7 +25,8 @@ class data(np.ndarray):
         return self.__class__(super(data, self).__getitem__(item), dimensions=self.dimensions)
 
     def __repr__(self):
-        return '%s - dimensions: %s' % (str(np.asfarray(self)), self.dimensions)
+        return '%s - dimensions: [mass: %d, length: %d, time: %d, current: %d, temperature: %d, amount of substance: %d, luminous intensity: %d]' % \
+            (str(np.asfarray(self)), self.dimensions[0], self.dimensions[1], self.dimensions[2], self.dimensions[3], self.dimensions[4], self.dimensions[5], self.dimensions[6])
 
     def __array_prepare__(self, out_arr, context=None):
         ufunc_type = str(context[0]).split("'")[1]
@@ -65,8 +66,8 @@ class data(np.ndarray):
         if ufunc_type in ['multiply', 'divide', 'true_divide', 'floor_divide']:
             # The result should add the dimensions of the two operands together
             left_operand, right_operand = context[1][:2]
-            out_arr.dimensions = left_operand.dimensions if isinstance(left_operand, type(self)) else 0 + \
-                                 right_operand.dimensions if isinstance(right_operand, type(self)) else 0
+            out_arr.dimensions = (left_operand.dimensions if isinstance(left_operand, type(self)) else 0) + \
+                                 (right_operand.dimensions if isinstance(right_operand, type(self)) else 0)
         elif ufunc_type in ['power']:
             # The result should have its dimensions multiplied by the exponent
             left_operand, right_operand = context[1][:2]

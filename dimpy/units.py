@@ -20,8 +20,8 @@ unit_query = '''
     SELECT
       TRIM(prefix) || TRIM(symbol) AS unit,
       units.power + prefixes.power AS power,
-      units.length,
       units.mass,
+      units.length,
       units.time,
       units.current,
       units.temperature,
