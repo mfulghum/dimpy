@@ -2,14 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c076997c-d6c8-4131-aa41-766c2e204dec" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/test_array.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/test_units.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dimpy/units.db" afterPath="$PROJECT_DIR$/dimpy/units.db" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dimpy.iml" afterPath="$PROJECT_DIR$/.idea/dimpy.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dimpy/__init__.py" afterPath="$PROJECT_DIR$/dimpy/__init__.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dimpy/array.py" afterPath="$PROJECT_DIR$/dimpy/array.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/test_array.py" afterPath="$PROJECT_DIR$/tests/test_array.py" />
     </list>
     <ignored path="dimpy.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -23,7 +17,7 @@
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/dimpy$dimpy_Testing.coverage" NAME="dimpy Testing Coverage Results" MODIFIED="1465927058356" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/dimpy$dimpy_Testing.coverage" NAME="dimpy Testing Coverage Results" MODIFIED="1465927714184" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -47,11 +41,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="array.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="array.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dimpy/array.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="59">
-              <caret line="62" column="12" selection-start-line="62" selection-start-column="12" selection-end-line="62" selection-end-column="12" />
+            <state relative-caret-position="144">
+              <caret line="67" column="0" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
               <folding>
                 <element signature="e#167#185#0" expanded="true" />
               </folding>
@@ -59,11 +53,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test_array.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="test_array.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tests/test_array.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="606">
-              <caret line="36" column="44" selection-start-line="36" selection-start-column="44" selection-end-line="36" selection-end-column="44" />
+            <state relative-caret-position="637">
+              <caret line="53" column="43" selection-start-line="53" selection-start-column="43" selection-end-line="53" selection-end-column="43" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -495,24 +489,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="dimpy_Testing - 2016.06.14 at 10h 54m 37s.xml">
-      <configuration name="dimpy Testing" configurationId="tests" />
-    </history-entry>
-    <history-entry file="dimpy_Testing - 2016.06.14 at 10h 55m 09s.xml">
-      <configuration name="dimpy Testing" configurationId="tests" />
-    </history-entry>
-    <history-entry file="dimpy_Testing - 2016.06.14 at 10h 55m 19s.xml">
-      <configuration name="dimpy Testing" configurationId="tests" />
-    </history-entry>
-    <history-entry file="dimpy_Testing - 2016.06.14 at 10h 55m 31s.xml">
-      <configuration name="dimpy Testing" configurationId="tests" />
-    </history-entry>
-    <history-entry file="dimpy_Testing - 2016.06.14 at 10h 55m 45s.xml">
-      <configuration name="dimpy Testing" configurationId="tests" />
-    </history-entry>
-    <history-entry file="dimpy_Testing - 2016.06.14 at 10h 56m 02s.xml">
-      <configuration name="dimpy Testing" configurationId="tests" />
-    </history-entry>
     <history-entry file="dimpy_Testing - 2016.06.14 at 10h 56m 21s.xml">
       <configuration name="dimpy Testing" configurationId="tests" />
     </history-entry>
@@ -525,9 +501,27 @@
     <history-entry file="dimpy_Testing - 2016.06.14 at 10h 57m 38s.xml">
       <configuration name="dimpy Testing" configurationId="tests" />
     </history-entry>
+    <history-entry file="dimpy_Testing - 2016.06.14 at 11h 01m 06s.xml">
+      <configuration name="dimpy Testing" configurationId="tests" />
+    </history-entry>
+    <history-entry file="dimpy_Testing - 2016.06.14 at 11h 02m 25s.xml">
+      <configuration name="dimpy Testing" configurationId="tests" />
+    </history-entry>
+    <history-entry file="dimpy_Testing - 2016.06.14 at 11h 03m 43s.xml">
+      <configuration name="dimpy Testing" configurationId="tests" />
+    </history-entry>
+    <history-entry file="dimpy_Testing - 2016.06.14 at 11h 07m 31s.xml">
+      <configuration name="dimpy Testing" configurationId="tests" />
+    </history-entry>
+    <history-entry file="dimpy_Testing - 2016.06.14 at 11h 07m 59s.xml">
+      <configuration name="dimpy Testing" configurationId="tests" />
+    </history-entry>
+    <history-entry file="dimpy_Testing - 2016.06.14 at 11h 08m 34s.xml">
+      <configuration name="dimpy Testing" configurationId="tests" />
+    </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1176" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1176" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19829424" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -655,22 +649,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/test_array.py">
+    <entry file="file://$PROJECT_DIR$/dimpy/array.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="606">
-          <caret line="36" column="44" selection-start-line="36" selection-start-column="44" selection-end-line="36" selection-end-column="44" />
+        <state relative-caret-position="144">
+          <caret line="67" column="0" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
           <folding>
-            <element signature="e#0#15#0" expanded="true" />
+            <element signature="e#167#185#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dimpy/array.py">
+    <entry file="file://$PROJECT_DIR$/tests/test_array.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="59">
-          <caret line="62" column="12" selection-start-line="62" selection-start-column="12" selection-end-line="62" selection-end-column="12" />
+        <state relative-caret-position="637">
+          <caret line="53" column="43" selection-start-line="53" selection-start-column="43" selection-end-line="53" selection-end-column="43" />
           <folding>
-            <element signature="e#167#185#0" expanded="true" />
+            <element signature="e#0#15#0" expanded="true" />
           </folding>
         </state>
       </provider>

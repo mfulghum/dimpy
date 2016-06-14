@@ -37,9 +37,18 @@ class array_tests(unittest.TestCase):
         force = dimpy.data([1.0], units='N')
 
         self.assertTrue(mass * acceleration == force)
+        self.assertTrue(force / acceleration == mass)
+        self.assertTrue(force / mass == acceleration)
 
-        # Check that taking the square root halves the dimensions
+        # Check that taking the square root halves the dimensions, and that squaring doubles them
         area = dimpy.data([100.0], units='m^2')
         side = dimpy.data([10.0], units='m')
 
         self.assertTrue(np.sqrt(area) == side)
+        self.assertTrue(np.square(side) == area)
+
+        # Check that raising a value to a power handles the dimensions properly
+        length = dimpy.data([1.0], units='cm')
+        volume = dimpy.data([1.0], units='mL')
+
+        self.assertTrue(length**3 == volume)
