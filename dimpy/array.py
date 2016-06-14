@@ -30,53 +30,63 @@ class data(np.ndarray):
 
     def __array_prepare__(self, out_arr, context=None):
         ufunc_type = str(context[0]).split("'")[1]
-            
-        if ufunc_type in ['add', 'subtract', 'mod', 'fmod', 'remainder',
-                          'greater', 'greater_equal', 'equal', 'less_equal', 'less', 'not_equal']:
-            # These operations require dimensions to be consistent between operands
-            left_operand, right_operand = context[1][:2]
-            assert isinstance(left_operand, type(self)) and isinstance(right_operand, type(self))
-            assert np.all(left_operand.dimensions == right_operand.dimensions)
-        elif ufunc_type in ['sin', 'cos', 'tan',
-                            'arcsin', 'arccos', 'arctan', 'arctan2',
-                            'sinh', 'cosh', 'tanh',
-                            'arcsinh', 'arccosh', 'arctanh',
-                            'deg2rad', 'rad2deg',
-                            'exp', 'exp2', 'log', 'log2', 'log10',
-                            'expm1', 'log1',
-                            'logaddexp', 'logaddexp2']:
-            # These operations require that the inputs be dimensionless
-            operand = context[1][0]
-            assert np.all(operand.dimensions == 0)
-        elif ufunc_type in ['sqrt']:
-            # The result of a sqrt operation must have even dimension powers
-            operand = context[1][0]
-            assert np.all((operand.dimensions % 2) == 0)
-        elif ufunc_type in ['power']:
-            # The result of a power operation must result in integer dimension powers
-            left_operand, right_operand = context[1][:2]
-            assert np.all(not isinstance(right_operand, type(self)) or right_operand.dimensions == 0)
-            assert np.all(right_operand == np.round(np.asarray(right_operand)))
+
+        try:
+            if ufunc_type in ['add', 'subtract', 'mod', 'fmod', 'remainder',
+                              'greater', 'greater_equal', 'equal', 'less_equal', 'less', 'not_equal']:
+                # These operations require dimensions to be consistent between operands
+                left_operand, right_operand = context[1][:2]
+                assert isinstance(left_operand, type(self)) and isinstance(right_operand, type(self))
+                assert np.all(left_operand.dimensions == right_operand.dimensions)
+            elif ufunc_type in ['sin', 'cos', 'tan',
+                                'arcsin', 'arccos', 'arctan', 'arctan2',
+                                'sinh', 'cosh', 'tanh',
+                                'arcsinh', 'arccosh', 'arctanh',
+                                'deg2rad', 'rad2deg',
+                                'exp', 'exp2', 'log', 'log2', 'log10',
+                                'expm1', 'log1',
+                                'logaddexp', 'logaddexp2']:
+                # These operations require that the inputs be dimensionless
+                operand = context[1][0]
+                assert np.all(operand.dimensions == 0)
+            elif ufunc_type in ['sqrt']:
+                # The result of a sqrt operation must have even dimension powers
+                operand = context[1][0]
+                assert np.all((operand.dimensions % 2) == 0)
+            elif ufunc_type in ['power']:
+                # The result of a power operation must result in integer dimension powers
+                left_operand, right_operand = context[1][:2]
+                assert np.all(not isinstance(right_operand, type(self)) or right_operand.dimensions == 0)
+                assert np.all(right_operand == np.round(np.asarray(right_operand)))
+        except AssertionError, err:
+            raise DimensionError(err)
             
         return np.ndarray.__array_prepare__(self, out_arr, context)
 
     def __array_wrap__(self, out_arr, context=None):
         ufunc_type = str(context[0]).split("'")[1]
-        
-        if ufunc_type in ['multiply', 'divide', 'true_divide', 'floor_divide']:
-            # The result should add the dimensions of the two operands together
-            left_operand, right_operand = context[1][:2]
-            out_arr.dimensions = (left_operand.dimensions if isinstance(left_operand, type(self)) else 0) + \
-                                 (right_operand.dimensions if isinstance(right_operand, type(self)) else 0)
-        elif ufunc_type in ['power']:
-            # The result should have its dimensions multiplied by the exponent
-            left_operand, right_operand = context[1][:2]
-            out_arr.dimensions *= np.asarray(right_operand)
-        elif ufunc_type in ['sqrt']:
-            # The result should have halved dimension powers
-            out_arr.dimensions /= 2
-        elif ufunc_type in ['square']:
-            # The result should have doubled dimension powers
-            out_arr.dimensions *= 2
-                              
+
+        try:
+            if ufunc_type in ['multiply', 'divide', 'true_divide', 'floor_divide']:
+                # The result should add the dimensions of the two operands together
+                left_operand, right_operand = context[1][:2]
+                out_arr.dimensions = (left_operand.dimensions if isinstance(left_operand, type(self)) else 0) + \
+                                     (right_operand.dimensions if isinstance(right_operand, type(self)) else 0)
+            elif ufunc_type in ['power']:
+                # The result should have its dimensions multiplied by the exponent
+                left_operand, right_operand = context[1][:2]
+                out_arr.dimensions *= np.asarray(right_operand)
+            elif ufunc_type in ['sqrt']:
+                # The result should have halved dimension powers
+                out_arr.dimensions /= 2
+            elif ufunc_type in ['square']:
+                # The result should have doubled dimension powers
+                out_arr.dimensions *= 2
+        except AssertionError, err:
+            raise DimensionError(err)
+
         return np.ndarray.__array_wrap__(self, out_arr, context)
+
+class DimensionError(Exception):
+    def __init__(self,*args,**kwargs):
+        Exception.__init__(self,*args,**kwargs)
