@@ -7,11 +7,19 @@ import dimpy.units
 class array_tests(unittest.TestCase):
     def test_repr(self):
         # Check that the array repr matches intended output
-        self.assertEquals(repr(dimpy.data([1.0, 2.0, 3.0], units='N')), '[ 1.  2.  3.] - dimensions: [mass: 1, length: 1, time: -2, current: 0, temperature: 0, amount of substance: 0, luminous intensity: 0]')
+        self.assertEquals(repr(dimpy.data([1.0, 2.0, 3.0], units='N')),
+                          '[ 1.  2.  3.] - dimensions: [mass: 1, length: 1, time: -2, current: 0, temperature: 0, amount of substance: 0, luminous intensity: 0]')
 
     def test_powers(self):
         # Check that arrays scale properly to the native internal representation
-        self.assertTrue(np.all(dimpy.data([1.0, 2.0, 3.0], units='mm') == dimpy.data([1e-3, 2e-3, 3e-3], units='m')))
+        np.testing.assert_array_almost_equal(dimpy.data([1.0, 2.0, 3.0], units='mm'), dimpy.data([1e-3, 2e-3, 3e-3], units='m'))
+
+    def test_scalars(self):
+        # Check that we can grab a single element from an array
+        lengths = dimpy.data([1.0, 2.0, 3.0], units='m')
+        self.assertEqual(lengths[0], dimpy.data([1.0], units='m'))
+        self.assertEqual(lengths[1], dimpy.data([2.0], units='m'))
+        self.assertEqual(lengths[2], dimpy.data([3.0], units='m'))
 
     def test_dimensional_homogeneity(self):
         # Check that you cannot add dissimilar dimensions
@@ -36,19 +44,25 @@ class array_tests(unittest.TestCase):
         acceleration = dimpy.data([1.0], units='m/s^2')
         force = dimpy.data([1.0], units='N')
 
-        self.assertTrue(mass * acceleration == force)
-        self.assertTrue(force / acceleration == mass)
-        self.assertTrue(force / mass == acceleration)
+        np.testing.assert_array_almost_equal(mass * acceleration, force)
+        np.testing.assert_array_almost_equal(force / acceleration, mass)
+        np.testing.assert_array_almost_equal(force / mass, acceleration)
 
         # Check that taking the square root halves the dimensions, and that squaring doubles them
         area = dimpy.data([100.0], units='m^2')
         side = dimpy.data([10.0], units='m')
 
-        self.assertTrue(np.sqrt(area) == side)
-        self.assertTrue(np.square(side) == area)
+        np.testing.assert_array_almost_equal(np.sqrt(area), side)
+        np.testing.assert_array_almost_equal(np.square(side), area)
 
         # Check that raising a value to a power handles the dimensions properly
-        length = dimpy.data([1.0], units='cm')
-        volume = dimpy.data([1.0], units='mL')
+        length = dimpy.data([0.1, 1.0, 10.0], units='m')
+        volume = dimpy.data([1.0, 1000.0, 1000000.0], units='L')
 
-        self.assertTrue(length**3 == volume)
+        np.testing.assert_array_almost_equal(length**3, volume)
+
+        # Check other equality behavior
+        self.assertTrue(dimpy.data([1.0], units='mm') < dimpy.data([1.0], units='m'))
+        self.assertTrue(dimpy.data([1.0], units='mm') <= dimpy.data([1.0], units='m'))
+        self.assertTrue(dimpy.data([1.0], units='m') > dimpy.data([1.0], units='mm'))
+        self.assertTrue(dimpy.data([1.0], units='m') >= dimpy.data([1.0], units='mm'))

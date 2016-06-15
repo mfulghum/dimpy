@@ -20,9 +20,6 @@ class data(np.ndarray):
         if obj is None: 
             return
         self.dimensions = getattr(obj, 'dimensions', np.zeros(7, dtype=np.int8))
-        print('array finalize:')
-        print(repr(obj))
-        print('')
 
     def __getitem__(self, item):
         return self.__class__(super(data, self).__getitem__(item), dimensions=self.dimensions)
@@ -33,11 +30,6 @@ class data(np.ndarray):
 
     def __array_prepare__(self, out_arr, context=None):
         ufunc_type = str(context[0]).split("'")[1]
-
-        print('array prepare:')
-        print(repr(out_arr))
-        print(repr(context))
-        print('')
 
         try:
             if ufunc_type in ['add', 'subtract', 'mod', 'fmod', 'remainder',
@@ -75,40 +67,32 @@ class data(np.ndarray):
         ufunc_type = str(context[0]).split("'")[1]
         out_arr = np.asarray(out_arr).view(self.__class__)
 
-        print('array wrap:')
-        print(repr(out_arr))
-        print(repr(context))
-        print('')
-
-        try:
-            if ufunc_type in ['multiply']:
-                # The result should add the dimensions of the two operands together
-                left_operand, right_operand = context[1][:2]
-                out_arr.dimensions = (left_operand.dimensions if isinstance(left_operand, type(self)) else 0) + \
-                                     (right_operand.dimensions if isinstance(right_operand, type(self)) else 0)
-            elif ufunc_type in ['divide', 'true_divide', 'floor_divide']:
-                # The result should subtract the dimensions of the second operand from the first
-                left_operand, right_operand = context[1][:2]
-                out_arr.dimensions = (left_operand.dimensions if isinstance(left_operand, type(self)) else 0) - \
-                                     (right_operand.dimensions if isinstance(right_operand, type(self)) else 0)
-            elif ufunc_type in ['power']:
-                # The result should have its dimensions multiplied by the exponent
-                left_operand, right_operand = context[1][:2]
-                out_arr.dimensions = left_operand.dimensions * np.asarray(right_operand)
-            elif ufunc_type in ['sqrt']:
-                # The result should have halved dimension powers
-                out_arr.dimensions = context[1][0].dimensions / 2
-            elif ufunc_type in ['square']:
-                # The result should have doubled dimension powers
-                out_arr.dimensions = context[1][0].dimensions * 2
-            elif ufunc_type in ['greater', 'greater_equal', 'equal', 'less_equal', 'less', 'not_equal']:
-                # Equality checks should be dimensionless
-                out_arr.dimensions = np.zeros_like(context[1][0].dimensions)
-            else:
-                # Other ufuncs will just return the left operand's dimensions
-                out_arr.dimensions = context[1][0].dimensions
-        except AssertionError, err:
-            raise DimensionError(err)
+        if ufunc_type in ['multiply']:
+            # The result should add the dimensions of the two operands together
+            left_operand, right_operand = context[1][:2]
+            out_arr.dimensions = (left_operand.dimensions if isinstance(left_operand, type(self)) else 0) + \
+                                 (right_operand.dimensions if isinstance(right_operand, type(self)) else 0)
+        elif ufunc_type in ['divide', 'true_divide', 'floor_divide']:
+            # The result should subtract the dimensions of the second operand from the first
+            left_operand, right_operand = context[1][:2]
+            out_arr.dimensions = (left_operand.dimensions if isinstance(left_operand, type(self)) else 0) - \
+                                 (right_operand.dimensions if isinstance(right_operand, type(self)) else 0)
+        elif ufunc_type in ['power']:
+            # The result should have its dimensions multiplied by the exponent
+            left_operand, right_operand = context[1][:2]
+            out_arr.dimensions = left_operand.dimensions * np.asarray(right_operand)
+        elif ufunc_type in ['sqrt']:
+            # The result should have halved dimension powers
+            out_arr.dimensions = context[1][0].dimensions / 2
+        elif ufunc_type in ['square']:
+            # The result should have doubled dimension powers
+            out_arr.dimensions = context[1][0].dimensions * 2
+        elif ufunc_type in ['greater', 'greater_equal', 'equal', 'less_equal', 'less', 'not_equal']:
+            # Equality checks should be dimensionless
+            out_arr.dimensions = np.zeros_like(context[1][0].dimensions)
+        else:
+            # Other ufuncs will just return the left operand's dimensions
+            out_arr.dimensions = context[1][0].dimensions
 
         return np.ndarray.__array_wrap__(self, out_arr, context)
 
