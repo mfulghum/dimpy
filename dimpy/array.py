@@ -4,14 +4,15 @@ Copyright 2016, Matthew Fulghum [mfulghum]
 
 5 June 2016 - Initial commit.
 9 June 2016 - Added checks for dimensionality.
+14 June 2016 - Fixed some issues with memory views.
 """
 
 import numpy as np
-import units as unit_check
+from units import check_dimensionality
 
 class data(np.ndarray):
     def __new__(cls, input_array, units='', dimensions=None):
-        power, dimensions = unit_check.check_dimensionality(units) if dimensions is None else (0, np.array(dimensions, dtype=np.int8))        
+        power, dimensions = check_dimensionality(units) if dimensions is None else (0, np.array(dimensions, dtype=np.int8))
         obj = np.asarray(input_array).view(cls) * 10.0**power
         obj.dimensions = dimensions
         return obj

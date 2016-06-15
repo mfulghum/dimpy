@@ -3,7 +3,7 @@ Unit dimensioning checks
 Copyright 2016, Matthew Fulghum [mfulghum]
 
 9 June 2016 - Initial commit.
-10 June 2016 - Improved speed of the dimension checks
+10 June 2016 - Improved speed of the dimension checks.
 """
 
 import sqlite3

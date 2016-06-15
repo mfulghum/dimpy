@@ -1,3 +1,10 @@
+"""
+Unit tests for the dimension checks
+Copyright 2016, Matthew Fulghum [mfulghum]
+
+12 June 2016 - Initial commit.
+"""
+
 import unittest
 import numpy as np
 

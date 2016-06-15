@@ -6,3 +6,5 @@ Copyright 2016, Matthew Fulghum [mfulghum]
 """
 
 from array import data, DimensionError
+from units import check_dimensionality
+import analysis

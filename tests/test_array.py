@@ -1,3 +1,11 @@
+"""
+Unit tests for the dimensioned arrays
+Copyright 2016, Matthew Fulghum [mfulghum]
+
+12 June 2016 - Initial commit.
+15 June 2016 - Fixed some issues with floating-point rounding error.
+"""
+
 import unittest
 import numpy as np
 
