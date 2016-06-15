@@ -10,3 +10,10 @@ import dimpy
 
 vel = dimpy.data([1.0, 2.0, 3.0], units='mm/s')
 area = dimpy.data([20.0], units='m^2')
+
+mass = dimpy.data([1.0], units='kg')
+acceleration = dimpy.data([1.0], units='m/s^2')
+force = dimpy.data([1.0], units='N')
+
+length = dimpy.data([1.0], units='cm')
+volume = dimpy.data([1.0], units='mL')
