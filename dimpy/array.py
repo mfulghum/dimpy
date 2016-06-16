@@ -97,6 +97,10 @@ class data(np.ndarray):
 
         return np.ndarray.__array_wrap__(self, out_arr, context)
 
+def unit(units=''):
+    # Hack-y way to handle a unit quantity for dimensional analysis
+    return data(1.0, units)
+
 class DimensionError(Exception):
     def __init__(self,*args,**kwargs):
         Exception.__init__(self,*args,**kwargs)

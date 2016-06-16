@@ -17,3 +17,14 @@ force = dimpy.data([1.0], units='N')
 
 length = dimpy.data([1.0], units='cm')
 volume = dimpy.data([1.0], units='mL')
+
+# Pendulum model
+T = dimpy.unit('s')
+M = dimpy.unit('kg')
+L = dimpy.unit('m')
+g = dimpy.unit('m/s^2')
+A = dimpy.unit('A')
+
+variables = [T, M, L, g]
+dimensions = np.vstack([variable.dimensions for variable in variables])
+print(dimpy.analysis.get_dimensional_set_shape(variables))

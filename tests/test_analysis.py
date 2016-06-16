@@ -22,6 +22,6 @@ class analysis_tests(unittest.TestCase):
         # Check that the dimensional set shapes are correct
         self.assertEquals(dimpy.analysis.get_dimensional_set_shape([mass, acceleration, force]), (3, 3, 1))
         self.assertEquals(dimpy.analysis.get_dimensional_set_shape([mass, acceleration, force, current]), (4, 4, 1))
-        self.assertEquals(dimpy.analysis.get_dimensional_set_shape([mass, acceleration, force, volume]), (4, 3, 2))
-        self.assertEquals(dimpy.analysis.get_dimensional_set_shape([force, current]), (2, 4, -1))
+        self.assertEquals(dimpy.analysis.get_dimensional_set_shape([mass, acceleration, force, volume]), (4, 3, 1))
+        self.assertEquals(dimpy.analysis.get_dimensional_set_shape([force, current]), (2, 4, 0))
         self.assertEquals(dimpy.analysis.get_dimensional_set_shape([force, volume]), (2, 3, 0))
