@@ -7,4 +7,4 @@ Copyright 2016, Matthew Fulghum [mfulghum]
 
 from array import data, unit, DimensionError
 from units import check_dimensionality
-import analysis
+from analysis import analyze
