@@ -25,7 +25,7 @@ L = dimpy.unit('m')
 g = dimpy.unit('m/s^2')
 
 variables = [T, M, L, g]
-print(dimpy.analysis.get_valid_dimensional_sets(variables))
+print(dimpy.analyze(variables))
 
 # Black body model
 u = dimpy.unit('kg/(m^2-s^2)')
@@ -36,5 +36,5 @@ kB = dimpy.unit('kg-m^2/(s^2-K)')
 T = dimpy.unit('K')
 
 variables = [u, wavelength, h, c, kB, T]
-print(dimpy.analysis.get_valid_dimensional_sets(variables))
+print(dimpy.analyze(variables))
 
