@@ -25,3 +25,14 @@ class analysis_tests(unittest.TestCase):
         self.assertEquals(dimpy.analysis.get_dimensional_set_shape([mass, acceleration, force, volume]), (4, 3, 1))
         self.assertEquals(dimpy.analysis.get_dimensional_set_shape([force, current]), (2, 4, 0))
         self.assertEquals(dimpy.analysis.get_dimensional_set_shape([force, volume]), (2, 3, 0))
+
+    def test_analysis(self):
+        # Pendulum model
+        T = dimpy.unit('s')
+        M = dimpy.unit('kg')
+        L = dimpy.unit('m')
+        g = dimpy.unit('m/s^2')
+
+        variables = [T, M, L, g]
+        dimensional_sets = dimpy.analyze(variables)
+        np.testing.assert_array_equal(dimensional_sets[0][:,0], np.array([2, 0, -1, 1]))

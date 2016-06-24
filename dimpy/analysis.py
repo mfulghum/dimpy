@@ -18,7 +18,7 @@ def get_dimensional_set_shape(variables):
 
     return int(num_variables), int(num_dimensions), int(num_groups)
 
-def get_valid_dimensional_sets(variables):
+def analyze(variables):
     num_variables, num_dimensions, num_groups = get_dimensional_set_shape(variables)
     permutations = list({tuple(set(value[num_groups:])) for value in itertools.permutations(range(num_variables))})
     dimensions = np.vstack([variable.dimensions for variable in variables])
@@ -62,8 +62,4 @@ def get_valid_dimensional_sets(variables):
         if not in_valid_sets:
             valid_sets.append((pi_matrix, rank, nullspace))
             
-            print('permutation: %s' % repr(permutation))
-            print(pi_matrix)
-            print(nullspace)
-
-    return [valid_set[0] for valid_set in valid_sets]
+    return [np.array(valid_set[0]) for valid_set in valid_sets]
